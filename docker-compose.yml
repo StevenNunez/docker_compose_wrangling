@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: postgres:10.3
+  backend:
+    build: backend/
+    volumes:
+      - ./backend:/app
+    command: mix phx.server
+    ports:
+      - 4000:4000
+
+  frontend:
+    build: frontend/
+    volumes:
+      - ./frontend:/app
+    command: npm start
+    ports:
+      - 3000:3000
